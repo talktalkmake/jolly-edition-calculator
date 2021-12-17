@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import calculateDueDates from "./functions/calculateDueDates"
+import { useState } from "react";
 import './App.css';
 
 function App() {
+  const {weddingDate, setWeddingDate} = useState('')
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="row">
+        <label htmlFor="wedding-date">When is the wedding day?</label>
+        <input type="date" id="wedding-date" onChange={e => calculateDueDates(e.target.value)} />
+      </section>
+      <section className="row">
+        <dl>
+          <dt>Save-the-date due date</dt>
+          <dd id="save-the-date-due"></dd>
+          <dt>Invite due date</dt>
+          <dd id="invite-due"></dd>
+          <dt>Day-of deadline</dt>
+          <dd id="day-of-due"></dd>
+        </dl>
+      </section>
     </div>
   );
 }
