@@ -1,25 +1,30 @@
-import calculateDueDates from "./functions/calculateDueDates"
+import { calculateDueDates } from "./functions/calculateDueDates"
 import { useState } from "react";
 import './App.css';
 
 function App() {
-  const {weddingDate, setWeddingDate} = useState('')
+  const [weddingDate, setWeddingDate] = useState(false)
+  const dateObj = () => calculateDueDates(weddingDate)
   return (
     <div className="App">
       <section className="row">
         <label htmlFor="wedding-date">When is the wedding day?</label>
-        <input type="date" id="wedding-date" onChange={e => calculateDueDates(e.target.value)} />
+        <input type="date" id="wedding-date" onChange={e => setWeddingDate(e.target.value)} />
       </section>
+      {weddingDate && (
       <section className="row">
         <dl>
-          <dt>Save-the-date due date</dt>
-          <dd id="save-the-date-due"></dd>
-          <dt>Invite due date</dt>
-          <dd id="invite-due"></dd>
-          <dt>Day-of deadline</dt>
-          <dd id="day-of-due"></dd>
+          {
+          dateObj().map(event => 
+            <>
+            <dt>{event.label} due date</dt>
+            <dd>{event.date ? event.date : 'not possible (date in the past)'}</dd>
+            </>
+          )
+          }
         </dl>
       </section>
+      )}
     </div>
   );
 }

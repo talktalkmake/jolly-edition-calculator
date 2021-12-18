@@ -1,6 +1,13 @@
 .row {
   text-align: center;
 }
+dl {
+  display: flex;
+}
+dt, dd {
+  margin: 0;
+  width: 50%;
+}
 dt {
   text-align: right;
 }
