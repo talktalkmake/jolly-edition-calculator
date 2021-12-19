@@ -3,24 +3,33 @@ import moment from "moment"
 const today = moment()
 
 export function calculateDueDates(date){
-    const dateObj = moment(date)
-    
-    if ( isBeforeToday(dateObj) ){
-        return false
-    }
+    const dateObj = moment(date, 'YYYY-MM-DD', true)
 
-    const restultingDates = [
-        {label: 'Save the Date', date: calculateRelativeDate(dateObj, 6, 'months')},
-        {label: 'Invite', date: calculateRelativeDate(dateObj, 3, 'months')},
-        {label: 'Day-of', date: calculateRelativeDate(dateObj, 6, 'weeks')}
+    const events = [
+        {
+            label: 'Save the Date',
+            date: calculateRelativeDate(dateObj, 6, 'months'),
+            impossible: false
+        },
+        {
+            label: 'Invite',
+            date: calculateRelativeDate(dateObj, 3, 'months'),
+            impossible: false
+        },
+        {
+            label: 'Day-of',
+            date: calculateRelativeDate(dateObj, 6, 'weeks'),
+            impossible: false
+        }
     ]
 
-    restultingDates.forEach((date,i) => {
-        if ( isBeforeToday(date) )
-            restultingDates[i] = false
+    events.forEach((event,i) => {
+        if ( isBeforeToday(event.date) ){
+            event.impossible = true
+        }
     })
 
-    return restultingDates
+    return events
 
 }
 

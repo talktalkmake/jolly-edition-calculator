@@ -1,31 +1,38 @@
 import { calculateDueDates } from "./functions/calculateDueDates"
 import { useState } from "react";
 import './App.css';
+import getId from './functions/getId'
+import moment from 'moment'
+import PrintPricing from './components/PrintPricing'
 
 function App() {
   const [weddingDate, setWeddingDate] = useState(false)
-  const dateObj = () => calculateDueDates(weddingDate)
+  const dateObj = calculateDueDates(weddingDate)
+  // 2021-12-19T12:30:30+00:00
   return (
-    <div className="App">
-      <section className="row">
-        <label htmlFor="wedding-date">When is the wedding day?</label>
-        <input type="date" id="wedding-date" onChange={e => setWeddingDate(e.target.value)} />
-      </section>
-      {weddingDate && (
-      <section className="row">
-        <dl>
-          {
-          dateObj().map(event => 
-            <>
-            <dt>{event.label} due date</dt>
-            <dd>{event.date ? event.date : 'not possible (date in the past)'}</dd>
-            </>
-          )
-          }
-        </dl>
-      </section>
-      )}
-    </div>
+    <>
+    <h1 className="text-center text-6xl">Calcudate</h1>
+    <section className="row">
+      <label htmlFor="wedding-date" className="block">When is the wedding day?</label>
+      <input
+        type="date"
+        min={moment().add(3, 'months').format('YYYY-MM-DD')}
+        max={moment().add(2, 'years').format('YYYY-MM-DD')}
+        id="wedding-date"
+        onChange={e => setWeddingDate(e.target.value)} />
+    </section>
+    {weddingDate && (
+    <section className="row events">
+    {dateObj.map(event => 
+      <dl className={event.impossible ? 'strike ghost' : null} key={getId()}>
+          <dt className="event-label"><span className="block h3">{event.label}</span> due date</dt>
+          <dd className="event-date">{event.date ? event.date : 'not possible (date in the past)'}</dd>
+      </dl>
+    )}
+    </section>
+    )}
+    <PrintPricing />
+    </>
   );
 }
 

@@ -7,21 +7,15 @@ import {calculateDueDates, isBeforeToday, calculateRelativeDate} from './calcula
 const futureDate = '2023-12-16'
 const pastDate = '2021-12-16'
 const firstDateisPast = '2022-04-16'
-
-it('Make sure projects are not in the past', () => {
-  expect(calculateDueDates(pastDate)).toEqual(false)
-})
-
-// User inputs a date in 10 digit format 'YYYY-MM-DD'
+const feb052022 = '2022-02-05'
+const feb05Result = [
+  {label: 'Save the Date', date: 'Aug 05 2021', impossible: true}, 
+  {label: 'Invite', date: 'Nov 05 2021', impossible: true}, 
+  {label: 'Day-of', date: 'Dec 25 2021', impossible: false}
+]
 
 it('Returns an array', () => {
   const result = calculateDueDates(futureDate) //?
-  expect(Array.isArray(result)).toBe(true)
-})
-
-// Test for the first date being in the past
-it('Returns an array', () => {
-  const result = calculateDueDates(firstDateisPast) //?
   expect(Array.isArray(result)).toBe(true)
 })
 
@@ -31,6 +25,9 @@ describe('isBeforeToday()', () => {
   })
   it('checks date IS before today', () => {
     expect(isBeforeToday(pastDate)).toBe(true)
+  })
+  it('checks the impossible attrib of the first object is false', () => {
+    expect(calculateDueDates(feb052022)).toEqual(feb05Result)
   })
 })
 
