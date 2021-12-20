@@ -5,7 +5,7 @@ import {calculateDueDates, isBeforeToday, calculateRelativeDate} from './calcula
 // Check the length of the argument
 
 const futureDate = '2023-12-16'
-const pastDate = '2021-12-16'
+const pastDate = 'Jun 16 2020'
 const firstDateisPast = '2022-04-16'
 const feb052022 = '2022-02-05'
 const feb05Result = [

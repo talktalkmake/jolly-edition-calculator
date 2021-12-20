@@ -1,7 +1,5 @@
 import moment from "moment"
 
-const today = moment()
-
 export function calculateDueDates(date){
     const dateObj = moment(date, 'YYYY-MM-DD', true)
 
@@ -34,7 +32,7 @@ export function calculateDueDates(date){
 }
 
 export function isBeforeToday(date){
-    return moment(date, 'YYYY-MM-DD').isBefore(today)
+    return moment(date, 'MMM DD YYYY', true).isBefore()
 }
 
 export function calculateRelativeDate(date, offset=6, unit='months'){
