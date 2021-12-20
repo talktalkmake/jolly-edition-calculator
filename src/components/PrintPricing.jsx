@@ -1,166 +1,15 @@
-import { useState } from "react"
+import React, { useState, useReducer } from "react"
 import getId from "../functions/getId"
+import reducer from '../reducers/reducer'
+import initialState from '../reducers/initialState'
+import formatOptions from '../reducers/formatOptions'
 
-const possibleEmbellishments = [
-    {
-        name: 'Foil',
-        costPerPrint: 2
-    },
-    {
-        name: 'Letterpress',
-        costPerPrint: 2
-    },
-    {
-        name: 'Edge Painting',
-        costPerPrint: 1
-    },
-    {
-        name: 'Envelope Address Print',
-        costPerPrint: 3
-    },
-    {
-        name: 'Double-sided Envelope Address Print',
-        costPerPrint: 6
-    },
-]
-
-const formatOptions = {
-    '4-bar': {
-        x: 3.475,
-        y: 4.875,
-        canFold: true,
-        costPerPrint: 1.5
-    },
-    'A6': {
-        x: 4.625,
-        y: 6.25,
-        canFold: true,
-        costPerPrint: 2
-    },
-    'A7': {
-        x: 5,
-        y: 7,
-        canFold: true,
-        costPerPrint: 2
-    },
-    '#10': {
-        x: 4,
-        y: 9.25,
-        canFold: true,
-        costPerPrint: 2
-    },
-    'Half-/Gate-fold A7': {
-        x: 10,
-        y: 7,
-        canFold: false,
-        costPerPrint: 4
-    },
-    '11" x 14"': {
-        x: 11,
-        y: 14,
-        canFold: false,
-        costPerPrint: 20
-    },
-    '18" x 24"': {
-        x: 18,
-        y: 24,
-        canFold: false,
-        costPerPrint: 75
-    }
+const embellishments = {
+    foil: {costPerPrint: 3},
+    letterpress: {costPerPrint: 3},
+    edgePainting: {costPerPrint: 1}, 
+    addressPrint: {costPerPrint: 3},
 }
-
-const allProducts = [
-    {
-        name: 'Save-the-date',
-        format: 'A6',
-        fold: formatOptions['A6'].canFold,
-        envelope: true,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Invite',
-        format: 'A7',
-        fold: formatOptions['A7'].canFold,
-        envelope: true,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Details Card',
-        format: '4-bar',
-        fold: formatOptions['4-bar'].canFold,
-        envelope: false,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Reply Card',
-        format: '4-bar',
-        fold: formatOptions['4-bar'].canFold,
-        envelope: true,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Map',
-        format: 'A7',
-        fold: formatOptions['A7'].canFold,
-        envelope: false,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Thank You Card',
-        format: '4-bar',
-        fold: formatOptions['4-bar'].canFold,
-        envelope: true,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Menu',
-        format: '#10',
-        fold: formatOptions['#10'].canFold,
-        envelope: false,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Program',
-        format: 'Half-/Gate-fold A7',
-        fold: formatOptions['Half-/Gate-fold A7'].canFold,
-        envelope: false,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-    {
-        name: 'Drinks Menu',
-        format: '11" x 14"',
-        fold: formatOptions['11" x 14"'].canFold,
-        envelope: false,
-        addressPrint: false,
-        letterpress: false,
-        thickness: 'single',
-        edgePainting: false
-    },
-]
 
 const getListOfFormatOptions = (options, b) => {
     return (
@@ -170,15 +19,28 @@ const getListOfFormatOptions = (options, b) => {
 
 const getFormatList = (obj) => Object.keys(obj)
 
-const calculateSubtotal = (costPerPrint, quantity) => costPerPrint * quantity
 
-export default function PrintPricing(){
-    const [products, setProducts] = useState(allProducts)
+function PrintPricing(){
+    const [state, dispatch] = useReducer(reducer, initialState)
     const [quantity, setQuantity] = useState(50)
     const [total, setTotal] = useState(0)
 
-    const updateProduct = (product, key) => {
-        // products[product][key]
+    const calculateSubtotal = (item, quantity) => {
+        let subTotal = 0
+        subTotal += formatOptions[item.format].costPerPrint
+        if ( item.envelope )
+            subTotal += .5
+        if ( item.addressPrint )
+            subTotal += item.addressPrint === '1-side' ? (embellishments.addressPrint.costPerPrint) : (embellishments.addressPrint.costPerPrint * 2)
+        if ( item.foil )
+            subTotal += embellishments.foil.costPerPrint
+        if ( item.letterpress )
+            subTotal += embellishments.letterpress.costPerPrint
+        if ( item.edgePainting )
+            subTotal += embellishments.edgePainting.costPerPrint
+        if ( item.thickness > 1 )
+            subTotal += ((item.thickness * formatOptions[item.format].costPerPrint) - formatOptions[item.format].costPerPrint)
+        return subTotal
     }
 
     return(
@@ -189,30 +51,30 @@ export default function PrintPricing(){
             <input type="number" value={quantity} onChange={e => setQuantity(e.target.value)} id="quantity" />
             <table className="mt-2">
                 <tbody>
-                {products.map((product, i) => (
+                {state.map((product, i) => (
                     <tr key={getId()}>
                         <td>{product.name}</td>
-                        <td><select defaultValue={product.format} onChange={() => console.log('change happened')}>{getListOfFormatOptions(getFormatList(formatOptions), product.format)}</select></td>
+                        <td><select defaultValue={product.format} onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>{getListOfFormatOptions(getFormatList(formatOptions), product.format)}</select></td>
                         <td>{product.envelope && "✉"}</td>
                         <td>{product.envelope && 
-                            <select defaultValue={product.addressPrint} onChange={() => console.log('change happened')}>
+                            <select defaultValue={product.addressPrint} onChange={e => dispatch({type: 'changeAddressPrint', id: i, addressPrint: e.target.value})}>
                                 <option>None</option>
                                 <option>1-side</option>
                                 <option>2-side</option>
                             </select>}</td>
-                        <td><input type="checkbox" onChange={() => console.log('change happened')} /></td>
-                        <td><input type="checkbox" onChange={() => console.log('change happened')} /></td>
+                        <td><input type="checkbox" defaultChecked={product.foil} onChange={() => dispatch({type: 'toggleFoil', id: i})} /></td>
+                        <td><input type="checkbox" defaultChecked={product.letterpress} onChange={() => dispatch({type: 'toggleLetterpress', id: i})} /></td>
+                        <td><input type="checkbox" defaultChecked={product.edgePainting} onChange={e => dispatch({type: 'toggleEdgePainting', id: i})} /></td>
                         <td>
                             {product.fold &&
-                            <select onChange={() => console.log('change happened')}>
-                                <option>Single</option>
-                                <option>Double</option>
-                                <option>Triple</option>
+                            <select defaultValue={product.thickness} onChange={e => dispatch({type: 'changeThickness', thickness: parseInt(e.target.value), id: i})}>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
                             </select>
                             }
                         </td>
-                        <td><input type="checkbox" onChange={() => console.log('change happened')} /></td>
-                        <td>${calculateSubtotal(formatOptions[product.format].costPerPrint, quantity)}</td>
+                        <td>${calculateSubtotal(state[i], quantity)}</td>
                     </tr>)
                 )}
                 </tbody>
@@ -224,8 +86,8 @@ export default function PrintPricing(){
                         <th>Address Print</th>
                         <th>Foil</th>
                         <th>Letterpress</th>
-                        <th>Thickness</th>
                         <th>Edge-painting</th>
+                        <th>Thickness</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -237,8 +99,8 @@ export default function PrintPricing(){
                         <th>Address Print</th>
                         <th>Foil</th>
                         <th>Letterpress</th>
-                        <th>Thickness</th>
                         <th>Edge-painting</th>
+                        <th>Thickness</th>
                         <th>Total</th>
                     </tr>
                 </tfoot>
@@ -247,3 +109,5 @@ export default function PrintPricing(){
         </>
     )
 }
+
+export default PrintPricing

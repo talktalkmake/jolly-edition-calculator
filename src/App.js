@@ -1,5 +1,5 @@
 import { calculateDueDates } from "./functions/calculateDueDates"
-import { useState } from "react";
+import React, { useState } from "react";
 import './App.css';
 import getId from './functions/getId'
 import moment from 'moment'
@@ -8,7 +8,7 @@ import PrintPricing from './components/PrintPricing'
 function App() {
   const [weddingDate, setWeddingDate] = useState(false)
   const dateObj = calculateDueDates(weddingDate)
-  // 2021-12-19T12:30:30+00:00
+  
   return (
     <>
     <h1 className="text-center text-6xl">Calcudate</h1>
