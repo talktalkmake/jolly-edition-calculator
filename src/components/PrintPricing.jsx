@@ -24,129 +24,162 @@ const possibleEmbellishments = [
     },
 ]
 
-const formatOptions = [
-    {
-        label: '4-bar',
+const formatOptions = {
+    '4-bar': {
         x: 3.475,
         y: 4.875,
         canFold: true,
         costPerPrint: 1.5
     },
-    {
-        label: 'A6',
+    'A6': {
         x: 4.625,
         y: 6.25,
         canFold: true,
         costPerPrint: 2
     },
-    {
-        label: 'A7',
+    'A7': {
         x: 5,
         y: 7,
         canFold: true,
         costPerPrint: 2
     },
-    {
-        label: '#10',
+    '#10': {
         x: 4,
         y: 9.25,
         canFold: true,
         costPerPrint: 2
     },
-    {
-        label: 'Half-/Gate-fold A7',
+    'Half-/Gate-fold A7': {
         x: 10,
         y: 7,
         canFold: false,
         costPerPrint: 4
     },
-    {
-        label: '11" x 14"',
+    '11" x 14"': {
         x: 11,
         y: 14,
         canFold: false,
         costPerPrint: 20
     },
-    {
-        label: '18" x 24"',
+    '18" x 24"': {
         x: 18,
         y: 24,
         canFold: false,
         costPerPrint: 75
     }
-]
+}
 
 const allProducts = [
     {
         name: 'Save-the-date',
-        format: formatOptions.find(format => format.label === 'A6').label,
-        fold: formatOptions.find(format => format.label === 'A6').canFold,
+        format: 'A6',
+        fold: formatOptions['A6'].canFold,
         envelope: true,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Invite',
-        format: formatOptions.find(format => format.label === 'A7').label,
-        fold: formatOptions.find(format => format.label === 'A7').canFold,
+        format: 'A7',
+        fold: formatOptions['A7'].canFold,
         envelope: true,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Details Card',
-        format: formatOptions.find(format => format.label === '4-bar').label,
-        fold: formatOptions.find(format => format.label === '4-bar').canFold,
+        format: '4-bar',
+        fold: formatOptions['4-bar'].canFold,
         envelope: false,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Reply Card',
-        format: formatOptions.find(format => format.label === '4-bar').label,
-        fold: formatOptions.find(format => format.label === '4-bar').canFold,
+        format: '4-bar',
+        fold: formatOptions['4-bar'].canFold,
         envelope: true,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Map',
-        format: formatOptions.find(format => format.label === 'A7').label,
-        fold: formatOptions.find(format => format.label === 'A7').canFold,
+        format: 'A7',
+        fold: formatOptions['A7'].canFold,
         envelope: false,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Thank You Card',
-        format: formatOptions.find(format => format.label === '4-bar').label,
-        fold: formatOptions.find(format => format.label === '4-bar').canFold,
+        format: '4-bar',
+        fold: formatOptions['4-bar'].canFold,
         envelope: true,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Menu',
-        format: formatOptions.find(format => format.label === '#10').label,
-        fold: formatOptions.find(format => format.label === '#10').canFold,
+        format: '#10',
+        fold: formatOptions['#10'].canFold,
         envelope: false,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Program',
-        format: formatOptions.find(format => format.label === 'Half-/Gate-fold A7').label,
-        fold: formatOptions.find(format => format.label === 'Half-/Gate-fold A7').canFold,
+        format: 'Half-/Gate-fold A7',
+        fold: formatOptions['Half-/Gate-fold A7'].canFold,
         envelope: false,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
     {
         name: 'Drinks Menu',
-        format: formatOptions.find(format => format.label === '11" x 14"').label,
-        fold: formatOptions.find(format => format.label === '11" x 14"').canFold,
+        format: '11" x 14"',
+        fold: formatOptions['11" x 14"'].canFold,
         envelope: false,
+        addressPrint: false,
+        letterpress: false,
+        thickness: 'single',
+        edgePainting: false
     },
 ]
 
 const getListOfFormatOptions = (options, b) => {
     return (
-        options.map(option => <option key={getId()}>{option.label}</option>)
+        options.map(option => <option key={getId()}>{option}</option>)
     )
 }
+
+const getFormatList = (obj) => Object.keys(obj)
 
 const calculateSubtotal = (costPerPrint, quantity) => costPerPrint * quantity
 
 export default function PrintPricing(){
-    const [options, setOptions] = useState(formatOptions)
     const [products, setProducts] = useState(allProducts)
-    const [embellishments, setEmbellishments] = useState(possibleEmbellishments)
     const [quantity, setQuantity] = useState(50)
     const [total, setTotal] = useState(0)
+
+    const updateProduct = (product, key) => {
+        // products[product][key]
+    }
 
     return(
         <>
@@ -159,26 +192,27 @@ export default function PrintPricing(){
                 {products.map((product, i) => (
                     <tr key={getId()}>
                         <td>{product.name}</td>
-                        <td><select defaultValue={product.format}>{getListOfFormatOptions(formatOptions, product.format)}</select></td>
+                        <td><select defaultValue={product.format} onChange={() => console.log('change happened')}>{getListOfFormatOptions(getFormatList(formatOptions), product.format)}</select></td>
                         <td>{product.envelope && "✉"}</td>
                         <td>{product.envelope && 
-                            <select>
+                            <select defaultValue={product.addressPrint} onChange={() => console.log('change happened')}>
+                                <option>None</option>
                                 <option>1-side</option>
                                 <option>2-side</option>
                             </select>}</td>
-                        <td><input type="checkbox" /></td>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" onChange={() => console.log('change happened')} /></td>
+                        <td><input type="checkbox" onChange={() => console.log('change happened')} /></td>
                         <td>
                             {product.fold &&
-                            <select>
+                            <select onChange={() => console.log('change happened')}>
                                 <option>Single</option>
                                 <option>Double</option>
                                 <option>Triple</option>
                             </select>
                             }
                         </td>
-                        <td><input type="checkbox" /></td>
-                        <td>${calculateSubtotal(formatOptions.find(format => format.label === product.format).costPerPrint, quantity)}</td>
+                        <td><input type="checkbox" onChange={() => console.log('change happened')} /></td>
+                        <td>${calculateSubtotal(formatOptions[product.format].costPerPrint, quantity)}</td>
                     </tr>)
                 )}
                 </tbody>

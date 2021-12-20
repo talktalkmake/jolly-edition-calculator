@@ -34,7 +34,7 @@ export function calculateDueDates(date){
 }
 
 export function isBeforeToday(date){
-    return moment(date).isBefore(today)
+    return moment(date, 'YYYY-MM-DD').isBefore(today)
 }
 
 export function calculateRelativeDate(date, offset=6, unit='months'){
