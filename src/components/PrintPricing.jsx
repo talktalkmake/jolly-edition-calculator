@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react"
+import React, { useState, useReducer, useEffect } from "react"
 import getId from "../functions/getId"
 import reducer from '../reducers/reducer'
 import initialState from '../reducers/initialState'
@@ -23,7 +23,7 @@ const getFormatList = (obj) => Object.keys(obj)
 function PrintPricing(){
     const [state, dispatch] = useReducer(reducer, initialState)
     const [quantity, setQuantity] = useState(50)
-    const [total, setTotal] = useState(0)
+    let total = 0
 
     const calculateSubtotal = (item, quantity) => {
         let subTotal = 0
@@ -40,6 +40,7 @@ function PrintPricing(){
             subTotal += embellishments.edgePainting.costPerPrint
         if ( item.thickness > 1 )
             subTotal += ((item.thickness * formatOptions[item.format].costPerPrint) - formatOptions[item.format].costPerPrint)
+        total += subTotal
         return subTotal
     }
 
@@ -105,6 +106,7 @@ function PrintPricing(){
                     </tr>
                 </tfoot>
             </table>
+            <h1 className="text-center text-6xl">${(total * quantity).toLocaleString()}</h1>
         </section>
         </>
     )
