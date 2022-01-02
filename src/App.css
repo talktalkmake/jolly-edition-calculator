@@ -58,6 +58,7 @@ tr:hover td{
 }
 td {border-top: 1px solid #3c595f;}
 
+.je-logo { width: 8rem; margin: 0 auto; display: block; }
 
 .ghost { color: rgba(0,0,0,.3);}
 .block {display: block;}
