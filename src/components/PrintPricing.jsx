@@ -32,6 +32,8 @@ function PrintPricing(){
             subTotal += .5
         if ( item.addressPrint )
             subTotal += item.addressPrint === '1-side' ? (embellishments.addressPrint.costPerPrint) : (embellishments.addressPrint.costPerPrint * 2)
+        if ( item.hasStamp )
+            subTotal += .58
         if ( item.foil )
             subTotal += embellishments.foil.costPerPrint
         if ( item.letterpress )
@@ -57,6 +59,10 @@ function PrintPricing(){
                         <td>{product.name}</td>
                         <td><select defaultValue={product.format} onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>{getListOfFormatOptions(getFormatList(formatOptions), product.format)}</select></td>
                         <td>{product.envelope && "✉"}</td>
+                        <td>{product.envelope &&
+                            <input type="checkbox" defaultChecked={product.hasStamp} onChange={e => dispatch({type: "toggleStamp", id: i})} />
+                        }
+                        </td>
                         <td>{product.envelope && 
                             <select defaultValue={product.addressPrint} onChange={e => dispatch({type: 'changeAddressPrint', id: i, addressPrint: e.target.value})}>
                                 <option>None</option>
@@ -84,6 +90,7 @@ function PrintPricing(){
                         <th>Name</th>
                         <th>Format</th>
                         <th>Envelope</th>
+                        <th>Stamp</th>
                         <th>Address Print</th>
                         <th>Foil</th>
                         <th>Letterpress</th>
@@ -97,6 +104,7 @@ function PrintPricing(){
                         <th>Name</th>
                         <th>Format</th>
                         <th>Envelope</th>
+                        <th>Stamp</th>
                         <th>Address Print</th>
                         <th>Foil</th>
                         <th>Letterpress</th>

@@ -17,6 +17,12 @@ function reducer(state, action) {
         : action.addressPrint
       state[action.id] = temp
       return state
+
+    case 'toggleStamp': 
+      temp = {...state[action.id]}
+      temp.hasStamp = !temp.hasStamp
+      state[action.id] = temp
+      return state
     
     case 'toggleFoil':
       temp = {...state[action.id]}
