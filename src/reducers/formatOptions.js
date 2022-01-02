@@ -5,6 +5,12 @@ const formatOptions = {
         canFold: true,
         costPerPrint: 1.5
     },
+    'A2': {
+        x: 4.25,
+        y: 5.5,
+        canFold: true,
+        costPerPrint: 2
+    },
     'A6': {
         x: 4.625,
         y: 6.25,
