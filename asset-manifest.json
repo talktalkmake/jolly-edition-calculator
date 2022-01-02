@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jolly-edition-calculator/static/css/main.48ffaf1e.css",
-    "main.js": "/jolly-edition-calculator/static/js/main.f24f8ef0.js",
+    "main.css": "/jolly-edition-calculator/static/css/main.28eba140.css",
+    "main.js": "/jolly-edition-calculator/static/js/main.3227a9fb.js",
     "static/js/787.6285745a.chunk.js": "/jolly-edition-calculator/static/js/787.6285745a.chunk.js",
     "index.html": "/jolly-edition-calculator/index.html",
-    "main.48ffaf1e.css.map": "/jolly-edition-calculator/static/css/main.48ffaf1e.css.map",
-    "main.f24f8ef0.js.map": "/jolly-edition-calculator/static/js/main.f24f8ef0.js.map",
+    "main.28eba140.css.map": "/jolly-edition-calculator/static/css/main.28eba140.css.map",
+    "main.3227a9fb.js.map": "/jolly-edition-calculator/static/js/main.3227a9fb.js.map",
     "787.6285745a.chunk.js.map": "/jolly-edition-calculator/static/js/787.6285745a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48ffaf1e.css",
-    "static/js/main.f24f8ef0.js"
+    "static/css/main.28eba140.css",
+    "static/js/main.3227a9fb.js"
   ]
 }
