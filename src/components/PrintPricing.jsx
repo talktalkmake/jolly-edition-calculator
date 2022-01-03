@@ -45,7 +45,7 @@ function PrintPricing(){
         total += subTotal
         return subTotal
     }
-
+    console.log(state);
     return(
         <>
         <section className="row">
