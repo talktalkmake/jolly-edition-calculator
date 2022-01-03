@@ -22,7 +22,7 @@ const getFormatList = (obj) => Object.keys(obj)
 
 function PrintPricing(){
     const [state, dispatch] = useReducer(reducer, initialState)
-    const [quantity, setQuantity] = useState(50)
+    const [quantity, setQuantity] = useState(100)
     let total = 0
 
     const calculateSubtotal = (item, quantity) => {
