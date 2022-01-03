@@ -45,7 +45,7 @@ function PrintPricing(){
         total += subTotal
         return subTotal
     }
-    console.log(state);
+
     return(
         <>
         <section className="row">
@@ -55,8 +55,14 @@ function PrintPricing(){
             <table className="mt-2">
                 <tbody>
                 {state.map((product, i) => (
-                    <tr key={getId()}>
-                        <td>{product.name}</td>
+                    <tr key={i}>
+                        <td><input
+                            type="text"
+                            value={product.name}
+                            className="product-name"
+                            onChange={e => dispatch({type: "updateProductName", id: i, name: e.target.value})}
+                            />
+                        </td>
                         <td><select defaultValue={product.format} onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>{getListOfFormatOptions(getFormatList(formatOptions), product.format)}</select></td>
                         <td>{product.envelope && "✉"}</td>
                         <td>{product.envelope &&

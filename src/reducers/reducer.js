@@ -48,6 +48,12 @@ function reducer(state, action) {
       state[action.id] = temp
       return state
 
+    case 'updateProductName':
+      temp = {...state[action.id]}
+      temp.name = action.name
+      state[action.id] = temp
+      return state
+
     default:
       throw new Error();
   }

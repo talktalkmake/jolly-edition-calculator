@@ -60,6 +60,22 @@ td {border-top: 1px solid #3c595f;}
 
 .je-logo { width: 8rem; margin: 0 auto; display: block; }
 
+.product-name,
+.product-name::placeholder,
+.product-name:focus {
+  color: #22474b;
+}
+.product-name {
+  background: transparent;
+  border: 1px solid transparent;
+}
+.product-name::placeholder{
+}
+.product-name:focus {
+  border: 1px solid black;
+  background: white;
+}
+
 .ghost { color: rgba(0,0,0,.3);}
 .block {display: block;}
 
