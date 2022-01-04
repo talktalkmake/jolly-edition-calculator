@@ -3,6 +3,7 @@ import getId from "../functions/getId"
 import reducer from '../reducers/reducer'
 import initialState from '../reducers/initialState'
 import formatOptions from '../reducers/formatOptions'
+import getListOfFormatOptions from '../functions/getListOfFormatOptions'
 
 const embellishments = {
     foil: {costPerPrint: 3},
@@ -10,15 +11,6 @@ const embellishments = {
     edgePainting: {costPerPrint: 1}, 
     addressPrint: {costPerPrint: 3},
 }
-
-const getListOfFormatOptions = (options, b) => {
-    return (
-        options.map((option, i) => <option key={i}>{option}</option>)
-    )
-}
-
-const getFormatList = (obj) => Object.keys(obj)
-
 
 function PrintPricing(){
     const [state, dispatch] = useReducer(reducer, initialState)
