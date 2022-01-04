@@ -48,6 +48,12 @@ function reducer(state, action) {
       state[action.id] = temp
       return state
 
+    case 'toggleEnvelope':
+      temp = {...state[action.id]}
+      temp.envelope = !temp.envelope
+      state[action.id] = temp
+      return state
+
     case 'updateProductName':
       temp = {...state[action.id]}
       temp.name = action.name

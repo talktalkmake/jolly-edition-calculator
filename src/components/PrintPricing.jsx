@@ -69,7 +69,9 @@ function PrintPricing(){
                                 {getListOfFormatOptions(getFormatList(formatOptions), product.format)}
                             </select>
                         </td>
-                        <td>{product.envelope && "✉"}</td>
+                        <td>
+                            <input type="checkbox" defaultChecked={product.envelope} onChange={() => dispatch({type: 'toggleEnvelope', id: i})} />
+                        </td>
                         <td>{product.envelope &&
                             <input type="checkbox" defaultChecked={product.hasStamp} onChange={e => dispatch({type: "toggleStamp", id: i})} />
                         }
