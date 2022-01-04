@@ -35,6 +35,30 @@ const formatOptions = {
         canFold: false,
         costPerPrint: 4
     },
+    '3-fold A7 cover': {
+        x: 15,
+        y: 7,
+        canFold: true,
+        costPerPrint: 6
+    },
+    '3-fold A7 cover + 1 mount': {
+        x: 15,
+        y: 7,
+        canFold: true,
+        costPerPrint: 8
+    },
+    '3-fold A7 cover + 2 mounts': {
+        x: 15,
+        y: 7,
+        canFold: true,
+        costPerPrint: 10
+    },
+    '3-fold A7 cover + 3 mounts': {
+        x: 15,
+        y: 7,
+        canFold: true,
+        costPerPrint: 12
+    },
     '11" x 14"': {
         x: 11,
         y: 14,
