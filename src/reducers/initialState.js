@@ -4,7 +4,7 @@ const initialState = [
     {
         name: 'Save-the-date',
         format: 'A6',
-        fold: formatOptions['A6'].canFold,
+        fold: formatOptions['A6'].hasFold,
         envelope: true,
         hasStamp: true,
         addressPrint: "1-side",
@@ -17,7 +17,7 @@ const initialState = [
     {
         name: 'Invite',
         format: 'A7',
-        fold: formatOptions['A7'].canFold,
+        fold: formatOptions['A7'].hasFold,
         envelope: true,
         hasStamp: true,
         addressPrint: "1-side",
@@ -30,7 +30,7 @@ const initialState = [
     {
         name: 'Details Card',
         format: '4-bar',
-        fold: formatOptions['4-bar'].canFold,
+        fold: formatOptions['4-bar'].hasFold,
         envelope: false,
         hasStamp: false,
         addressPrint: false,
@@ -43,7 +43,7 @@ const initialState = [
     {
         name: 'Reply Card',
         format: '4-bar',
-        fold: formatOptions['4-bar'].canFold,
+        fold: formatOptions['4-bar'].hasFold,
         envelope: true,
         hasStamp: true,
         addressPrint: "1-side",
@@ -56,7 +56,7 @@ const initialState = [
     {
         name: 'Map',
         format: 'A7',
-        fold: formatOptions['A7'].canFold,
+        fold: formatOptions['A7'].hasFold,
         envelope: false,
         hasStamp: false,
         addressPrint: false,
@@ -69,7 +69,7 @@ const initialState = [
     {
         name: 'Thank You Card',
         format: '4-bar',
-        fold: formatOptions['4-bar'].canFold,
+        fold: formatOptions['4-bar'].hasFold,
         envelope: true,
         hasStamp: true,
         addressPrint: "1-side",
@@ -82,7 +82,7 @@ const initialState = [
     {
         name: 'Menu',
         format: '#10',
-        fold: formatOptions['#10'].canFold,
+        fold: formatOptions['#10'].hasFold,
         envelope: false,
         hasStamp: false,
         addressPrint: false,
@@ -95,7 +95,7 @@ const initialState = [
     {
         name: 'Program',
         format: 'Half-fold A7',
-        fold: formatOptions['Half-fold A7'].canFold,
+        fold: formatOptions['Half-fold A7'].hasFold,
         envelope: false,
         hasStamp: false,
         addressPrint: false,
@@ -108,7 +108,7 @@ const initialState = [
     {
         name: 'Drinks Menu',
         format: '11" x 14"',
-        fold: formatOptions['11" x 14"'].canFold,
+        fold: formatOptions['11" x 14"'].hasFold,
         envelope: false,
         hasStamp: false,
         addressPrint: false,

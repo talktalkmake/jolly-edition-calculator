@@ -1,3 +1,5 @@
+import formatOptions from './formatOptions'
+
 function reducer(state, action) {
   
   state = [...state]
@@ -7,6 +9,8 @@ function reducer(state, action) {
     case 'changeFormat':
       temp = {...state[action.id]}
       temp.format = action.format
+      // update the fold attrib.
+      temp.fold = formatOptions[temp.format].hasFold
       state[action.id] = temp
       return state
       
