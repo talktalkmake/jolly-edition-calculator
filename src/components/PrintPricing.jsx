@@ -1,9 +1,7 @@
 import React, { useState, useReducer, useEffect } from "react"
-import getId from "../functions/getId"
 import reducer from '../reducers/reducer'
 import initialState from '../reducers/initialState'
 import formatOptions from '../reducers/formatOptions'
-import checkForInlineQuantity from '../functions/checkForInlineQuantity'
 import getListOfFormatOptions from '../functions/getListOfFormatOptions'
 
 const embellishments = {
