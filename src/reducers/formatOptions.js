@@ -27,12 +27,18 @@ const formatOptions = {
         x: 4,
         y: 9.25,
         canFold: true,
-        costPerPrint: 2
+        costPerPrint: 4
     },
-    'Half-/Gate-fold A7': {
+    'Half-fold A7': {
         x: 10,
         y: 7,
-        canFold: false,
+        canFold: true,
+        costPerPrint: 4
+    },
+    'Gate-fold A7': {
+        x: 10,
+        y: 7,
+        canFold: true,
         costPerPrint: 4
     },
     '3-fold A7 cover': {

@@ -94,8 +94,8 @@ const initialState = [
     },
     {
         name: 'Program',
-        format: 'Half-/Gate-fold A7',
-        fold: formatOptions['Half-/Gate-fold A7'].canFold,
+        format: 'Half-fold A7',
+        fold: formatOptions['Half-fold A7'].canFold,
         envelope: false,
         hasStamp: false,
         addressPrint: false,
