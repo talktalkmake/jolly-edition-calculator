@@ -107,7 +107,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 1
     },
 ]
 

@@ -60,6 +60,12 @@ function reducer(state, action) {
       state[action.id] = temp
       return state
 
+    case 'updateQuantity':
+      temp = {...state[action.id]}
+      temp.quantity = action.quantity
+      state[action.id] = temp
+      return state
+
     default:
       throw new Error();
   }

@@ -35,7 +35,7 @@ function PrintPricing(){
             subTotal += embellishments.edgePainting.costPerPrint
         if ( item.thickness > 1 )
             subTotal += ((item.thickness * formatOptions[item.format].costPerPrint) - formatOptions[item.format].costPerPrint)
-        total += subTotal
+        total += (subTotal * quantity)
         return subTotal
     }
 
@@ -59,7 +59,6 @@ function PrintPricing(){
                         <td><select
                             defaultValue={product.format}
                             onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>
-                                {getListOfFormatOptions(getFormatList(formatOptions), product.format)}
                                 {getListOfFormatOptions(Object.keys(formatOptions), product.format)}
                             </select>
                         </td>
@@ -88,7 +87,14 @@ function PrintPricing(){
                             </select>
                             }
                         </td>
-                        <td>${calculateSubtotal(state[i], quantity)}</td>
+                        <td>
+                            <input
+                            type="number"
+                            onChange={e => dispatch({type: 'updateQuantity', id: i, quantity: parseInt(e.target.value)})}
+                            defaultValue={product.quantity}
+                            className="quantity--inline" />
+                        </td>
+                        <td>${calculateSubtotal(state[i], checkForInlineQuantity(quantity, product.quantity))}</td>
                     </tr>)
                 )}
                 </tbody>
@@ -98,11 +104,12 @@ function PrintPricing(){
                         <th>Format</th>
                         <th>Envelope</th>
                         <th>Stamp</th>
-                        <th>Address Print</th>
+                        <th>Address<br />Print</th>
                         <th>Foil</th>
-                        <th>Letterpress</th>
-                        <th>Edge-painting</th>
+                        <th>Letter<br />press</th>
+                        <th>Edge<br />painting</th>
                         <th>Thickness</th>
+                        <th>Sets</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -112,16 +119,17 @@ function PrintPricing(){
                         <th>Format</th>
                         <th>Envelope</th>
                         <th>Stamp</th>
-                        <th>Address Print</th>
+                        <th>Address<br />Print</th>
                         <th>Foil</th>
-                        <th>Letterpress</th>
-                        <th>Edge-painting</th>
+                        <th>Letter<br />press</th>
+                        <th>Edge<br />painting</th>
                         <th>Thickness</th>
+                        <th>Sets</th>
                         <th>Total</th>
                     </tr>
                 </tfoot>
             </table>
-            <h1 className="text-center text-6xl">${(total * quantity).toLocaleString()}</h1>
+            <h1 className="text-center text-6xl">${total.toLocaleString()}</h1>
         </section>
         </>
     )
