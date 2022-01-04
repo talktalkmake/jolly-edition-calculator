@@ -60,6 +60,7 @@ function PrintPricing(){
                             defaultValue={product.format}
                             onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>
                                 {getListOfFormatOptions(getFormatList(formatOptions), product.format)}
+                                {getListOfFormatOptions(Object.keys(formatOptions), product.format)}
                             </select>
                         </td>
                         <td>
