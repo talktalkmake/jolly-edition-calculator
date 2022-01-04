@@ -13,7 +13,7 @@ const embellishments = {
 
 const getListOfFormatOptions = (options, b) => {
     return (
-        options.map(option => <option key={getId()}>{option}</option>)
+        options.map((option, i) => <option key={i}>{option}</option>)
     )
 }
 
@@ -63,7 +63,12 @@ function PrintPricing(){
                             onChange={e => dispatch({type: "updateProductName", id: i, name: e.target.value})}
                             />
                         </td>
-                        <td><select defaultValue={product.format} onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>{getListOfFormatOptions(getFormatList(formatOptions), product.format)}</select></td>
+                        <td><select
+                            defaultValue={product.format}
+                            onChange={e => dispatch({type: 'changeFormat', id: i, format: e.target.value})}>
+                                {getListOfFormatOptions(getFormatList(formatOptions), product.format)}
+                            </select>
+                        </td>
                         <td>{product.envelope && "✉"}</td>
                         <td>{product.envelope &&
                             <input type="checkbox" defaultChecked={product.hasStamp} onChange={e => dispatch({type: "toggleStamp", id: i})} />
