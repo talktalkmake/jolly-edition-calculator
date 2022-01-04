@@ -15,7 +15,6 @@ const embellishments = {
 
 function PrintPricing(){
     const [state, dispatch] = useReducer(reducer, initialState)
-    const [quantity, setQuantity] = useState(100)
     let total = 0
 
     const calculateSubtotal = (item, quantity) => {
@@ -43,8 +42,6 @@ function PrintPricing(){
         <>
         <section className="row">
             <h1 className="text-center text-6xl">Print Pricing</h1>
-            <label htmlFor="quantity" className="block">Select the print quantity</label>
-            <input type="number" value={quantity} onChange={e => setQuantity(e.target.value)} id="quantity" />
             <table className="mt-2">
                 <tbody>
                 {state.map((product, i) => (
@@ -94,7 +91,7 @@ function PrintPricing(){
                             defaultValue={product.quantity}
                             className="quantity--inline" />
                         </td>
-                        <td>${calculateSubtotal(state[i], checkForInlineQuantity(quantity, product.quantity))}</td>
+                        <td>${calculateSubtotal(state[i], product.quantity)}</td>
                     </tr>)
                 )}
                 </tbody>

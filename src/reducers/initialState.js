@@ -11,7 +11,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Invite',
@@ -23,7 +24,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Details Card',
@@ -35,7 +37,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Reply Card',
@@ -47,7 +50,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Map',
@@ -59,7 +63,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Thank You Card',
@@ -71,7 +76,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Menu',
@@ -83,7 +89,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Program',
@@ -95,7 +102,8 @@ const initialState = [
         letterpress: false,
         thickness: 1,
         edgePainting: false,
-        foil: false
+        foil: false,
+        quantity: 100
     },
     {
         name: 'Drinks Menu',
