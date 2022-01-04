@@ -73,7 +73,7 @@ function PrintPricing(){
                         <td><input type="checkbox" defaultChecked={product.foil} onChange={() => dispatch({type: 'toggleFoil', id: i})} /></td>
                         <td><input type="checkbox" defaultChecked={product.letterpress} onChange={() => dispatch({type: 'toggleLetterpress', id: i})} /></td>
                         <td><input type="checkbox" defaultChecked={product.edgePainting} onChange={e => dispatch({type: 'toggleEdgePainting', id: i})} /></td>
-                        <td>{console.log({product})}
+                        <td>
                             {!product.fold &&
                             <select defaultValue={product.thickness} onChange={e => dispatch({type: 'changeThickness', thickness: parseInt(e.target.value), id: i})}>
                                 <option>1</option>
