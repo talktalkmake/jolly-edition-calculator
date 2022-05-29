@@ -72,6 +72,7 @@ th {
   font-weight: 100;
   letter-spacing: .1rem;
   font-size: .8rem;
+  writing-mode: vertical-rl;
 }
 
 th:nth-child(odd),
