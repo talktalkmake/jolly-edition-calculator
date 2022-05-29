@@ -59,9 +59,7 @@ function reducer(state, action) {
       return [...state]
 
     case 'updateProductName':
-      temp = {...state[action.id]}
-      temp.name = action.name
-      state[action.id] = temp
+      state[action.id] = { ...state[action.id], name: action.name }
       return [...state]
 
     case 'updateQuantity':
