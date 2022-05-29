@@ -42,40 +42,40 @@ function PrintPricing() {
             <h1 className="text-center text-4xl mt-2">Print Pricing</h1>
             <table className="mt-2">
                 <tbody>
-                    {state.map((product, i) => (
+                    {state.map(({ name, format, envelope, hasStamp, foil, letterpress, edgePainting, thickness, quantity, addressPrint, fold }, i) => (
                         <tr key={i}>
                             <td><input
                                 type="text"
-                                value={product.name}
+                                value={name}
                                 className="product-name"
                                 onChange={e => dispatch({ type: "updateProductName", id: i, name: e.target.value })}
                             />
                             </td>
                             <td><select
-                                defaultValue={product.format}
+                                defaultValue={format}
                                 onChange={e => dispatch({ type: 'changeFormat', id: i, format: e.target.value })}>
-                                {getListOfFormatOptions(Object.keys(formatOptions), product.format)}
+                                {getListOfFormatOptions(Object.keys(formatOptions), format)}
                             </select>
                             </td>
                             <td>
-                                <input type="checkbox" defaultChecked={product.envelope} onChange={() => dispatch({ type: 'toggleEnvelope', id: i })} />
+                                <input type="checkbox" defaultChecked={envelope} onChange={() => dispatch({ type: 'toggleEnvelope', id: i })} />
                             </td>
-                            <td>{product.envelope &&
-                                <input type="checkbox" defaultChecked={product.hasStamp} onChange={e => dispatch({ type: "toggleStamp", id: i })} />
+                            <td>{envelope &&
+                                <input type="checkbox" defaultChecked={hasStamp} onChange={e => dispatch({ type: "toggleStamp", id: i })} />
                             }
                             </td>
-                            <td>{product.envelope &&
-                                <select defaultValue={product.addressPrint} onChange={e => dispatch({ type: 'changeAddressPrint', id: i, addressPrint: e.target.value })}>
+                            <td>{envelope &&
+                                <select defaultValue={addressPrint} onChange={e => dispatch({ type: 'changeAddressPrint', id: i, addressPrint: e.target.value })}>
                                     <option>None</option>
                                     <option>1-side</option>
                                     <option>2-side</option>
                                 </select>}</td>
-                            <td><input type="checkbox" defaultChecked={product.foil} onChange={() => dispatch({ type: 'toggleFoil', id: i })} /></td>
-                            <td><input type="checkbox" defaultChecked={product.letterpress} onChange={() => dispatch({ type: 'toggleLetterpress', id: i })} /></td>
-                            <td><input type="checkbox" defaultChecked={product.edgePainting} onChange={e => dispatch({ type: 'toggleEdgePainting', id: i })} /></td>
+                            <td><input type="checkbox" defaultChecked={foil} onChange={() => dispatch({ type: 'toggleFoil', id: i })} /></td>
+                            <td><input type="checkbox" defaultChecked={letterpress} onChange={() => dispatch({ type: 'toggleLetterpress', id: i })} /></td>
+                            <td><input type="checkbox" defaultChecked={edgePainting} onChange={e => dispatch({ type: 'toggleEdgePainting', id: i })} /></td>
                             <td>
-                                {!product.fold &&
-                                    <select defaultValue={product.thickness} onChange={e => dispatch({ type: 'changeThickness', thickness: parseInt(e.target.value), id: i })}>
+                                {!fold &&
+                                    <select defaultValue={thickness} onChange={e => dispatch({ type: 'changeThickness', thickness: parseInt(e.target.value), id: i })}>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
