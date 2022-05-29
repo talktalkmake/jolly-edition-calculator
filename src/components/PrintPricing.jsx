@@ -86,7 +86,7 @@ function PrintPricing() {
                                 <input
                                     type="number"
                                     onChange={e => dispatch({ type: 'updateQuantity', id: i, quantity: parseInt(e.target.value) })}
-                                    defaultValue={product.quantity}
+                                    defaultValue={quantity}
                                     className="quantity--inline" />
                             </td>
                             <td>${calculateSubtotal(state[i], product.quantity)}</td>
