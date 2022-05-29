@@ -1,5 +1,12 @@
 import formatOptions from './formatOptions'
 
+function updateState(state, id) {
+  return state.map((item, i) => item.id === id
+    ? true
+    : false
+  );
+}
+
 function reducer(state, action) {
 
   state = [...state]
@@ -7,70 +14,62 @@ function reducer(state, action) {
 
   switch (action.type) {
     case 'changeFormat':
-      temp = { ...state[action.id] }
-      temp.format = action.format
-      // update the fold attrib.
-      temp.fold = formatOptions[temp.format].hasFold
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? {
+          ...state[action.id],
+          format: action.format,
+          fold: formatOptions[action.format].hasFold
+        }
+        : item)];
 
     case 'changeAddressPrint':
-      temp = { ...state[action.id] }
-      temp.addressPrint = (action.addressPrint === 'None')
-        ? false
-        : action.addressPrint
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? { ...state[action.id], addressPrint: action.addressPrint === 'None' ? false : action.addressPrint }
+        : item
+      )];
 
     case 'toggleStamp':
-      temp = { ...state[action.id] }
-      temp.hasStamp = !temp.hasStamp
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? { ...state[action.id], hasStamp: !state[action.id].hasStamp }
+        : item
+      )];
 
     case 'toggleFoil':
-      temp = { ...state[action.id] }
-      temp.foil = !temp.foil
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? { ...state[action.id], foil: !state[action.id].foil }
+        : item)];
 
     case 'toggleLetterpress':
-      temp = { ...state[action.id] }
-      temp.letterpress = !temp.letterpress
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? { ...state[action.id], letterpress: !state[action.id].letterpress }
+        : item)];
 
     case 'changeThickness':
-      temp = { ...state[action.id] }
-      temp.thickness = action.thickness
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id ? { ...state[action.id], thickness: action.thickness }
+        : item)];
 
     case 'toggleEdgePainting':
-      temp = { ...state[action.id] }
-      temp.edgePainting = !temp.edgePainting
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? { ...state[action.id], edgePainting: !state[action.id].edgePainting }
+        : item)];
 
     case 'toggleEnvelope':
       const includesEnvelope = !state[action.id].envelope
-      state[action.id] = {
-        ...state[action.id],
-        envelope: includesEnvelope,
-        hasStamp: includesEnvelope,
-        addressPrint: includesEnvelope ? '1-side' : false
-      }
-      return [...state]
+      return [...state.map(item => item.id === action.id
+        ? {
+          ...state[action.id],
+          envelope: includesEnvelope,
+          hasStamp: includesEnvelope,
+          addressPrint: includesEnvelope ? '1-side' : false
+        }
+        : item
+      )];
 
     case 'updateProductName':
-      state[action.id] = { ...state[action.id], name: action.name }
-      return [...state]
+      return [...state.map(item => item.id === action.id ? { ...state[action.id], name: action.name } : item)];
 
     case 'updateQuantity':
-      temp = { ...state[action.id] }
-      temp.quantity = action.quantity
-      state[action.id] = temp
-      return [...state]
+      return [...state.map(item => item.id === action.id ? { ...state[action.id], quantity: action.quantity } : item)];
 
     default:
       throw new Error();

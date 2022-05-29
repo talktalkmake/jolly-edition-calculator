@@ -55,7 +55,7 @@ const formatOptions = {
         canBeDuplexed: false,
         canHaveEnvelope: true
     },
-    '3-fold A7 cover': {
+    '3-fold A7': {
         x: 15,
         y: 7,
         hasFold: true,
@@ -63,7 +63,7 @@ const formatOptions = {
         canBeDuplexed: false,
         canHaveEnvelope: true
     },
-    '3-fold A7 cover + 1 mount': {
+    '3-fold A7 + 1 mount': {
         x: 15,
         y: 7,
         hasFold: true,
@@ -71,7 +71,7 @@ const formatOptions = {
         canBeDuplexed: false,
         canHaveEnvelope: true
     },
-    '3-fold A7 cover + 2 mounts': {
+    '3-fold A7 + 2 mounts': {
         x: 15,
         y: 7,
         hasFold: true,
@@ -79,7 +79,7 @@ const formatOptions = {
         canBeDuplexed: false,
         canHaveEnvelope: true
     },
-    '3-fold A7 cover + 3 mounts': {
+    '3-fold A7 + 3 mounts': {
         x: 15,
         y: 7,
         hasFold: true,
