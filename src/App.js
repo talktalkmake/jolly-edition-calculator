@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <img src={process.env.PUBLIC_URL + '/je-logo.svg'} alt="Jolly Edition logo" className="block mx-auto w-32" />
+      <img src={process.env.PUBLIC_URL + '/je-logo.svg'} alt="Jolly Edition logo" className="block mx-auto w-28" />
       <h1 className="text-center text-4xl mt-2">Calcudate</h1>
       <section className="text-center mt-8">
         <label htmlFor="wedding-date" className="block">When is the wedding day?</label>
