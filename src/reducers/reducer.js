@@ -14,6 +14,7 @@ function reducer(state, action) {
       state[action.id] = temp
       return state
       
+      return [...state]
     case 'changeAddressPrint':
       temp = {...state[action.id]}
       temp.addressPrint = ( action.addressPrint === 'None' )
@@ -21,6 +22,7 @@ function reducer(state, action) {
         : action.addressPrint
       state[action.id] = temp
       return state
+      return [...state]
 
     case 'toggleStamp': 
       temp = {...state[action.id]}
@@ -28,17 +30,20 @@ function reducer(state, action) {
       state[action.id] = temp
       return state
     
+      return [...state]
     case 'toggleFoil':
       temp = {...state[action.id]}
       temp.foil = !temp.foil
       state[action.id] = temp
       return state
       
+      return [...state]
     case 'toggleLetterpress':
       temp = {...state[action.id]}
       temp.letterpress = !temp.letterpress
       state[action.id] = temp
       return state
+      return [...state]
 
     case 'changeThickness':
       temp = {...state[action.id]}
@@ -46,17 +51,20 @@ function reducer(state, action) {
       state[action.id] = temp
       return state
       
+      return [...state]
     case 'toggleEdgePainting':
       temp = {...state[action.id]}
       temp.edgePainting = !temp.edgePainting
       state[action.id] = temp
       return state
+      return [...state]
 
     case 'toggleEnvelope':
       temp = {...state[action.id]}
       temp.envelope = !temp.envelope
       state[action.id] = temp
       return state
+      return [...state]
 
     case 'updateProductName':
       temp = {...state[action.id]}
