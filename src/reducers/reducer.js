@@ -32,9 +32,8 @@ function reducer(state, action) {
       temp = {...state[action.id]}
       temp.foil = !temp.foil
       state[action.id] = temp
-      return state
-      
       return [...state]
+
     case 'toggleLetterpress':
       temp = {...state[action.id]}
       temp.letterpress = !temp.letterpress
