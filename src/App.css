@@ -5,28 +5,42 @@ body {
   flex-direction: column;
   margin: 0 auto;
 }
+
 :not(h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6){
+  .h1, .h2, .h3, .h4, .h5, .h6) {
   font-family: mr-eaves-sans, sans-serif;
 }
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   color: #22474b;
   font-family: masqualero, sans-serif;
 }
-.row {
-  text-align: center;
-}
-dt, dd {
+
+dt,
+dd {
   margin: 0;
 }
+
 .events {
   display: flex;
   justify-content: space-evenly;
 }
+
 .event-label {
   display: block;
 }
+
 .strike {
   text-decoration: line-through;
 }
@@ -34,10 +48,12 @@ dt, dd {
 input {
   font-size: 1rem;
 }
+
 label {
   font-style: italic;
 }
-label + input {
+
+label+input {
   margin-top: .5rem;
 }
 
@@ -45,23 +61,31 @@ table {
   border-spacing: 0;
   width: 100%;
 }
-th, td {padding: .4rem .25rem;}
+
+th,
+td {
+  padding: .4rem .25rem;
+}
+
 th {
   text-transform: uppercase;
   font-weight: 100;
   letter-spacing: .1rem;
   font-size: .8rem;
 }
+
 th:nth-child(odd),
-td:nth-child(odd){
+td:nth-child(odd) {
   background: rgba(255, 242, 55, 0.15);
 }
-tr:hover td{
+
+tr:hover td {
   background: rgba(255, 242, 55, 0.25);
 }
-td {border-top: 1px solid #3c595f;}
 
-.je-logo { width: 8rem; margin: 0 auto; display: block; }
+td {
+  border-top: 1px solid #3c595f;
+}
 
 .quantity--inline {
   width: clamp(2rem, 3rem, 4rem);
@@ -71,52 +95,19 @@ td {border-top: 1px solid #3c595f;}
 .product-name::placeholder,
 .product-name:focus {
   color: #22474b;
-  
+
 }
+
 .product-name {
   background: transparent;
   border: 1px solid transparent;
 }
-.product-name::placeholder{
-}
+
 .product-name:focus {
   border: 1px solid black;
   background: white;
 }
 
-.ghost { color: rgba(0,0,0,.3);}
-.block {display: block;}
-
-.text-center {text-align: center;}
-
-.uppercase { text-transform: uppercase; }
-
-.text-xs{	font-size: 0.75rem;
-line-height: 1rem;}
-.text-sm{	font-size: 0.875rem;
-line-height: 1.25rem;}
-.text-base{	font-size: 1rem;
-line-height: 1.5rem;}
-.text-lg{	font-size: 1.125rem;
-line-height: 1.75rem;}
-.text-xl{	font-size: 1.25rem;
-line-height: 1.75rem;}
-.text-2xl{	font-size: 1.5rem;
-line-height: 2rem;}
-.text-3xl{	font-size: 1.875rem;
-line-height: 2.25rem;}
-.text-4xl{	font-size: 2.25rem;
-line-height: 2.5rem;}
-.text-5xl{	font-size: 3rem;
-line-height: 1;}
-.text-6xl{	font-size: 3.75rem;
-line-height: 1;}
-.text-7xl{	font-size: 4.5rem;
-line-height: 1;}
-.text-8xl{	font-size: 6rem;
-line-height: 1;}
-.text-9xl{	font-size: 8rem;
-line-height: 1;}
-
-
-.mt-2	{margin-top: 2rem;}
+.ghost {
+  color: rgba(0, 0, 0, .3);
+}
