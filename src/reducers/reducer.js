@@ -53,9 +53,13 @@ function reducer(state, action) {
       return [...state]
 
     case 'toggleEnvelope':
-      temp = {...state[action.id]}
-      temp.envelope = !temp.envelope
-      state[action.id] = temp
+      const includesEnvelope = !state[action.id].envelope
+      state[action.id] = {
+        ...state[action.id],
+        envelope: includesEnvelope,
+        hasStamp: includesEnvelope,
+        addressPrint: includesEnvelope ? '1-side' : false
+      }
       return [...state]
 
     case 'updateProductName':
