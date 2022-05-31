@@ -3,23 +3,23 @@ import embellishments from '../functions/embellishments';
 import { STAMP_COST } from "../constants";
 import { ENVELOPE_COST } from "../constants";
 
-const calculateSubtotal = (item, quantity) => {
+const calculateSubtotal = ({ format, envelope, addressPrint, hasStamp, foil, letterpress, edgePainting, thickness }, quantity) => {
   let subTotal = 0
-  subTotal += formatOptions[item.format].costPerPrint
-  if (item.envelope)
-    subTotal += .5
-  if (item.addressPrint)
-    subTotal += item.addressPrint === '1-side' ? (embellishments.addressPrint.costPerPrint) : (embellishments.addressPrint.costPerPrint * 2)
-  if (item.hasStamp)
-    subTotal += .58
-  if (item.foil)
+  subTotal += formatOptions[format].costPerPrint
+  if (envelope)
+    subTotal += ENVELOPE_COST
+  if (addressPrint)
+    subTotal += addressPrint === '1-side' ? (embellishments.addressPrint.costPerPrint) : (embellishments.addressPrint.costPerPrint * 2)
+  if (hasStamp)
+    subTotal += STAMP_COST
+  if (foil)
     subTotal += embellishments.foil.costPerPrint
-  if (item.letterpress)
+  if (letterpress)
     subTotal += embellishments.letterpress.costPerPrint
-  if (item.edgePainting)
+  if (edgePainting)
     subTotal += embellishments.edgePainting.costPerPrint
-  if (item.thickness > 1)
-    subTotal += ((item.thickness * formatOptions[item.format].costPerPrint) - formatOptions[item.format].costPerPrint)
+  if (thickness > 1)
+    subTotal += ((thickness * formatOptions[format].costPerPrint) - formatOptions[format].costPerPrint)
   return subTotal * quantity
 }
 
