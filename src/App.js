@@ -6,8 +6,8 @@ import moment from 'moment'
 import PrintPricing from './components/PrintPricing'
 
 function App() {
-  const [weddingDate, setWeddingDate] = useState(false)
-  const dateObj = calculateDueDates(weddingDate)
+  const [weddingDate, setWeddingDate] = useState(false);
+  const dateObj = calculateDueDates(weddingDate);
 
   return (
     <>
@@ -17,6 +17,7 @@ function App() {
         <label htmlFor="wedding-date" className="block">When is the wedding day?</label>
         <input
           type="date"
+          className="border-2 border-slate-400 hover:border-slate-600 active:border-slate-900 rounded"
           min={moment().add(3, 'months').format('YYYY-MM-DD')}
           max={moment().add(2, 'years').format('YYYY-MM-DD')}
           id="wedding-date"
