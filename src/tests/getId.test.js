@@ -1,5 +1,5 @@
 import Jest from 'jest'
-import getId from './getId'
+import getId from '../functions/getId'
 
 describe('generate and return a random id', () => {
     test('it returns a string', () => {

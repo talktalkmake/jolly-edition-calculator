@@ -1,4 +1,4 @@
-import checkForInlineQuantity from './checkForInlineQuantity'
+import checkForInlineQuantity from '../functions/checkForInlineQuantity'
 it('returns the local amount', () => {
     const global = 100
     const local = 142
