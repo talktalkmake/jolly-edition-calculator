@@ -1,10 +1,5 @@
 import formatOptions from './formatOptions'
 
-function updateState(state, id) {
-  return state.map((item, i) => item.id === id
-    ? true
-    : false
-  );
 export const newHighestId = state =>
   state.length === 0
     ? 0
