@@ -1,0 +1,3 @@
+const STAMP_COST = 0.58;
+const ENVELOPE_COST = 0.50;
+export { STAMP_COST, ENVELOPE_COST };

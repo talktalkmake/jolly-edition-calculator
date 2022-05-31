@@ -1,5 +1,7 @@
 import formatOptions from "../reducers/formatOptions";
 import embellishments from '../functions/embellishments';
+import { STAMP_COST } from "../constants";
+import { ENVELOPE_COST } from "../constants";
 
 const calculateSubtotal = (item, quantity) => {
   let subTotal = 0
