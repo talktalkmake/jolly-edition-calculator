@@ -4,33 +4,47 @@ import initialState from '../reducers/initialState'
 import formatOptions from '../reducers/formatOptions'
 import getListOfFormatOptions from '../functions/getListOfFormatOptions'
 import calculateSubtotal from '../functions/calculateSubtotal'
+import { PlusSmIcon, XCircleIcon } from '@heroicons/react/solid'
+
+function reduceTotal(state) {
+    return state.reduce((previousValue, currentValue, i) =>
+        previousValue + calculateSubtotal(currentValue, currentValue.quantity), 0)
+}
 
 function PrintPricing() {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [totals] = useState([]);
-
-    // console.log(state)
+    const [total, setTotal] = useState(0);
+    useEffect(() => {
+        setTotal(reduceTotal(state));
+    }, [state]);
 
     return (
         <section className="text-center">
             <p className="mt-8">§</p>
-            <h1 className="text-center text-4xl mt-2">Print Pricing</h1>
             <table className="mt-2">
                 <tbody>
-                    {state.map(({ name, format, envelope, hasStamp, foil, letterpress, edgePainting, thickness, quantity, addressPrint, fold }, i) => {
+                    {state.map(({ name, format, envelope, hasStamp, foil, letterpress, edgePainting, thickness, quantity, addressPrint, fold, id }, i) => {
                         const subTotal = calculateSubtotal(state[i], quantity);
-                        totals[i] = subTotal;
                         return (
                             <tr key={i}>
-                                <td><input
-                                    type="text"
-                                    value={name}
-                                    className="product-name"
-                                    onChange={e => dispatch({ type: "updateProductName", id: i, name: e.target.value })}
-                                />
+                                <td>
+                                    <div className="flex items-center">
+                                        <button
+                                            onClick={() => { dispatch({ type: 'removeItem', id }); reduceTotal(state) }}
+                                            className="px-2 py-1 bg-transparent hover:bg-red-900 rounded text-red-300 hover:text-white flex items-center m-2">
+                                            <XCircleIcon className="h-4 w-4 mr-1" />
+                                        </button>
+                                        <input
+                                            type="text"
+                                            value={name}
+                                            className="product-name bg-transparent"
+                                            onChange={e => dispatch({ type: "updateProductName", id: i, name: e.target.value })}
+                                        />
+                                    </div>
                                 </td>
                                 <td><select
                                     defaultValue={format}
+                                    className='bg-transparent'
                                     onChange={e => dispatch({ type: 'changeFormat', id: i, format: e.target.value })}>
                                     {getListOfFormatOptions(Object.keys(formatOptions), format)}
                                 </select>
@@ -84,12 +98,14 @@ function PrintPricing() {
                         <th>Edge painting</th>
                         <th>Thickness</th>
                         <th>Sets</th>
-                        <th>Total</th>
+                        <th>Sub-total</th>
                     </tr>
                 </thead>
             </table>
-            <h1 className="text-center text-4xl mt-2">${totals.reduce((previousValue, currentValue) => previousValue + currentValue, 0).toLocaleString()}</h1>
-            <pre className="text-left">{JSON.stringify(state, null, 2)}</pre>
+            <button onClick={() => dispatch({ type: 'addItem' })}
+                className="px-2 py-1 bg-green-600 rounded text-white flex items-center m-2">
+                <PlusSmIcon className="h-4 w-4 mr-1" /> Add Item</button>
+            <h1 className="text-center text-3xl mt-2">${total.toLocaleString()} to print:</h1>
         </section>
     )
 }
