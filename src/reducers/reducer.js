@@ -5,6 +5,11 @@ function updateState(state, id) {
     ? true
     : false
   );
+export const newHighestId = state =>
+  state.length === 0
+    ? 0
+    : [...state.map(item => item.id)].pop() + 1
+
 }
 
 function reducer(state, action) {
@@ -13,6 +18,8 @@ function reducer(state, action) {
   let temp
 
   switch (action.type) {
+    case 'addItem':
+      return [...state, { id: newHighestId(state), ...newItem }];
     case 'changeFormat':
       return [...state.map(item => item.id === action.id
         ? {
