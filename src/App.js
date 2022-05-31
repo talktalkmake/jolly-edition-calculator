@@ -23,11 +23,11 @@ function App() {
           onChange={e => setWeddingDate(e.target.value)} />
       </section>
       {weddingDate && (
-          {dateObj.map(event =>
-            <dl className={event.impossible ? 'strike ghost' : null} key={getId()}>
-              <dt className="event-label"><span className="block h3">{event.label}</span> due date</dt>
-              <dd className="event-date">{event.date ? event.date : 'not possible (date in the past)'}</dd>
         <section className="text-center flex justify-evenly mt-4">
+          {dateObj.map(({ date, impossible, label }) =>
+            <dl className={impossible ? 'strike ghost' : null} key={getId()}>
+              <dt className="event-label"><span className="block h3">{label}</span> due date</dt>
+              <dd className="event-date">{date ? date : 'not possible (date in the past)'}</dd>
             </dl>
           )}
         </section>
